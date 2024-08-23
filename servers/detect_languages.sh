@@ -25,7 +25,7 @@ done
 
 # Function to install Node.js LSP servers
 install_node_servers() {
-    npm install -g typescript-language-server eslint-language-server vscode-html-languageserver-bin vscode-css-languageserver-bin
+    npm install -g typescript-language-server vim-language-server bash-language-server
 }
 
 # Function to install Python LSP servers
@@ -45,7 +45,6 @@ install_rust_servers() {
 
 # Function to install Java LSP servers
 install_java_servers() {
-    # You can add additional Java LSP server installations here
     echo "Java LSP server installation is not included in this script."
 }
 

@@ -12,6 +12,7 @@ highlight NonText ctermbg=NONE guibg=NONE
 highlight StatusLine ctermbg=NONE guibg=NONE
 highlight StatusLineNC ctermbg=NONE guibg=NONE
 
+
 " Leader key
 let mapleader = " "
 
@@ -55,10 +56,14 @@ augroup FiletypeSettings
   autocmd BufNewFile,BufRead *.js,*.ts,*.tsx setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
-" Key mappings
-nnoremap <Leader>y "+y
-vnoremap <Leader>y "+y
-nnoremap <Leader>Y "+Y
+" WSL yank support
+let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
+if executable(s:clip)
+    augroup WSLYank
+        autocmd!
+        autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+    augroup END
+endif
 
 nnoremap <CR> :noh<CR><CR>:<backspace>
 noremap S :%s//g<Left><Left>
@@ -102,6 +107,7 @@ highlight PmenuSbar ctermbg=235 guibg=#191724
 highlight PmenuThumb ctermbg=245 guibg=#403D52
 highlight PmenuBorder guibg=#302D41 guifg=#302D41
 
+inoremap <C-y> <C-n><C-y>
 " Register LSP servers with vim-lsp based on the installed languages
 
 if executable('tsserver')
@@ -144,6 +150,13 @@ if executable('clangd')
     \ })
 endif
 
+" let g:vim_lsp_java = {
+"   \ 'eclipse_jdtls' : {
+"     \ 'repository': expand('~/opt/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository'),
+"     \ 'config': 'config_linux',
+"     \ 'workspace': expand('$HOME/workspace'),
+"   \ },
+" \ }
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
@@ -175,4 +188,7 @@ augroup lsp_install
 augroup END
 
 set laststatus=2
+
+nmap <leader>c <Plug>CommentaryLine
+vmap <leader>c <Plug>Commentary
 
