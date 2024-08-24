@@ -46,9 +46,10 @@ git clone https://github.com/prabirshrestha/asyncomplete-lsp.vim.git ~/.vim/bund
 
 # rose-pine colorscheme
 git clone --depth=1 https://github.com/rose-pine/vim $HOME/.vim/bundle/rosepine
-
-# java lsp
-git clone https://github.com/lgranie/vim-lsp-java.git $HOME/.vim/bundle/vim-lsp-java
+git clone https://github.com/mbbill/undotree.git ~/.vim/bundle/undotree
+git clone --depth=1 https://github.com/ctrlpvim/ctrlp.vim.git ~/.vim/bundle/ctrlp.vim
+# # java lsp
+# git clone https://github.com/lgranie/vim-lsp-java.git $HOME/.vim/bundle/vim-lsp-java
 
 # Confirmation message
 echo "Vim environment setup complete!"

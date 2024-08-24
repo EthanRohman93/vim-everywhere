@@ -1,0 +1,18 @@
+Overarching Saturday goals for Vimier and Bashier
+
+Bashier
+    1. Interactive Vim hotkey customization
+        a. Write C offset filewriter for command-line file writing (prototype
+        done, add functionality for tracking new offsets)
+        b. Show current keybinds and their functions (aka "$" goes end-of-line)
+        c. Keybinds in non .vimrc file (file attached to repo pointed to by vim)
+
+    2. Interactive Bash-Prompt customization
+        a. Colors for various properties of the shell prompt
+        b. Add-ons/remove Add-ons for certain properties of the shell prompt
+
+Vimier
+    1. .vimrc & default keybind config file
+        a. default keybinds for plugins + default vim commands
+    2. Pathogen auto-script (auto git config for .vim/bundle setup)
+        a. some persistant bash script for installation
