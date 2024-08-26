@@ -12,7 +12,6 @@ highlight NonText ctermbg=NONE guibg=NONE
 highlight StatusLine ctermbg=NONE guibg=NONE
 highlight StatusLineNC ctermbg=NONE guibg=NONE
 
-
 " Leader key
 let mapleader = " "
 
@@ -82,17 +81,23 @@ nnoremap N Nzzzv
 
 let g:lightline = { 'colorscheme': 'rosepine' }
 
-" FZF configuration (no specific config needed by default)
-let g:fzf_command_prefix = 'Fzf'
-
 " Vim-LSP and Vim-LSP-Settings configuration
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_signs_enabled = 1
 let g:lsp_highlights_enabled = 1
 let g:lsp_virtual_text_enabled = 1
+" Prevent vim-lsp from automatically opening the location list for diagnostics
+let g:lsp_diagnostics_echo_cursor = 0
+" let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_float_cursor = 0
+let g:lsp_diagnostics_virtual_text = 0
+
+" Optionally, you can manually bind diagnostics to a key
+nmap <silent> <leader>ld :LspDiagnostics<CR>
+
 
 " Syntastic configuration
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
@@ -150,6 +155,15 @@ if executable('clangd')
     \ })
 endif
 
+if executable('bash-language-server')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'bash-language-server',
+        \ 'cmd': {server_info->['bash-language-server', 'start']},
+        \ 'allowlist': ['sh', 'bash'],
+        \ })
+endif
+
+
 " let g:vim_lsp_java = {
 "   \ 'eclipse_jdtls' : {
 "     \ 'repository': expand('~/opt/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository'),
@@ -157,6 +171,7 @@ endif
 "     \ 'workspace': expand('$HOME/workspace'),
 "   \ },
 " \ }
+
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
@@ -188,7 +203,7 @@ augroup lsp_install
 augroup END
 
 set laststatus=2
-
 nmap <leader>c <Plug>CommentaryLine
 vmap <leader>c <Plug>Commentary
-
+nnoremap <leader>u :UndotreeToggle<cr>
+nmap <leader>f <c-p>
