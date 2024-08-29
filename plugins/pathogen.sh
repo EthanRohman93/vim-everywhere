@@ -36,9 +36,6 @@ git clone https://github.com/tpope/vim-fugitive.git $HOME/.vim/bundle/fugitive.v
 # vim-commentary
 git clone https://github.com/tpope/vim-commentary.git $HOME/.vim/bundle/vim-commentary
 
-# syntastic
-git clone https://github.com/vim-syntastic/syntastic.git $HOME/.vim/bundle/syntastic
-
 # asyncomplete.vim
 git clone https://github.com/prabirshrestha/asyncomplete.vim.git $HOME/.vim/bundle/asyncomplete.vim
 
